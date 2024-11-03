@@ -63,3 +63,55 @@ To securely store your DockerHub credentials for GitHub Actions, follow these st
    
 These secrets will be securely referenced in your GitHub Actions workflow.
 
+## 🔄 Step 5: Create a GitHub Actions Workflow
+
+To automate the process of building and pushing a Docker image, add a GitHub Actions workflow:
+
+1. In your repository, create a new file at `.github/workflows/ci-build-and-push-image.yml`.
+2. Add the following content to the file:
+
+   ```yaml
+   name: CI-build-and-push-image-for-dotnetapp
+
+   on:
+     push:
+       branches: [ main ]
+       paths-ignore:
+         - README.md
+         - .vscode/**
+         - .gitignore
+     pull_request:
+       branches: [ main ]
+       paths-ignore:
+         - README.md
+         - .vscode/**
+         - .gitignore
+     workflow_dispatch:
+
+   jobs:
+     docker:
+       runs-on: ubuntu-latest
+       steps:
+         - name: Checkout source code
+           uses: actions/checkout@v3
+
+         - name: Set up QEMU (for multi-platform builds)
+           uses: docker/setup-qemu-action@v2
+
+         - name: Set up Docker Buildx
+           uses: docker/setup-buildx-action@v2
+
+         - name: Log in to DockerHub
+           uses: docker/login-action@v2
+           with:
+             username: ${{ secrets.DOCKERHUB_USERNAME }}
+             password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+         - name: Build and push Docker image
+           uses: docker/build-push-action@v2
+           with:
+             context: .
+             file: ./Dockerfile
+             push: true
+             tags: ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:latest, ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:${{ github.run_number }}
+
