@@ -54,9 +54,7 @@ ENTRYPOINT ["dotnet", "your.dll"]
 ```
 
 ### Step 4: Set Up GitHub Secrets 
-## 🔑 Setting Up GitHub Secrets
 To securely store your DockerHub credentials for GitHub Actions, follow these steps:
-
 1. Go to your repository's **Settings**.
 2. Navigate to **Secrets and variables** → **Actions**.
 3. Add the following secrets:
