@@ -22,3 +22,4 @@ This repository sets up a **Continuous Integration (CI)** pipeline for a `.NET 8
   git add .
   git commit -m "Initial commit"
   git push origin main
+### Step 3 : Create a Dockerfile
