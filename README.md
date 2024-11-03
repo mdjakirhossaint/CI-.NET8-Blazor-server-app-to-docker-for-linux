@@ -113,7 +113,7 @@ To automate the process of building and pushing a Docker image, add a GitHub Act
              file: ./Dockerfile
              push: true
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:latest, ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:${{ github.run_number }}
-```
+
 ## 🐳 Step 6: Verify Your Docker Image
 
 After the GitHub Actions workflow runs, verify that your Docker image was created successfully by visiting your Docker Hub account.
