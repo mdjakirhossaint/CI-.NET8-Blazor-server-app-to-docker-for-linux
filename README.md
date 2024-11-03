@@ -59,6 +59,7 @@ To securely store your DockerHub credentials for GitHub Actions, follow these st
    - **DOCKERHUB_USERNAME** – Your DockerHub username.
    - **DOCKERHUB_PASSWORD** – Your DockerHub password.
    ```
+# Save it as Docker Name.
 These secrets will be securely referenced in your GitHub Actions workflow.
 
 ## 🔄 Step 5: Create a GitHub Actions Workflow
