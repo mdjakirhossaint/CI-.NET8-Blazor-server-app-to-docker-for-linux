@@ -1,5 +1,3 @@
-# CI-.NET8-Blazor-server-app-to-docker-for-linux
-
 
 # 🚀 .NET 8.0 Blazor Project with Dockerized CI/CD
 
