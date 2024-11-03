@@ -20,4 +20,32 @@ This repository sets up a **Continuous Integration (CI)** pipeline for a `.NET 8
   git add .
   git commit -m "Initial commit"
   git push origin main
+  
 ### Step 3 : Create a Dockerfile
+# Base image for running the app in Debug mode
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER app
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+# Stage for building the project
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["Service Libraries Path/your.csproj", "Service Libraries Path/"]
+RUN dotnet restore "your presentation layer location/your.csproj"
+COPY . .
+WORKDIR "/src/your directory"
+RUN dotnet build "your.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# Stage for publishing the project
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "your.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# Final stage for production
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "your.dll"]
