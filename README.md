@@ -22,7 +22,7 @@ This repository sets up a **Continuous Integration (CI)** pipeline for a `.NET 8
   git push origin main
   
 ### Step 3 : Create a Dockerfile
-```C#
+```
 # Base image for running the app in Debug mode
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
@@ -50,8 +50,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "your.dll"]
-
-```
 
 ### Step 4: Set Up GitHub Secrets 
 To securely store your DockerHub credentials for GitHub Actions, follow these steps:
