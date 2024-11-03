@@ -113,3 +113,17 @@ To automate the process of building and pushing a Docker image, add a GitHub Act
              push: true
              tags: ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:latest, ${{ secrets.DOCKERHUB_USERNAME }}/your-docker-repo:${{ github.run_number }}
 ```
+## 🐳 Step 6: Verify Your Docker Image
+
+After the GitHub Actions workflow runs, verify that your Docker image was created successfully by visiting your Docker Hub account.
+
+### 🧪 Testing the Docker Image Locally
+
+To ensure the image functions as expected, pull it to your local machine and run it:
+
+```bash
+# Pull the Docker image from Docker Hub
+docker pull your-docker-username/your-docker-repo:latest
+
+# Run the Docker image, mapping port 80 in the container to port 8080 on your host machine
+docker run -d -p 8080:80 your-docker-username/your-docker-repo:latest
