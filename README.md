@@ -52,7 +52,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "your.dll"]
 ```
--Save and file name as Docker.
+- Save and file name as Docker.
 ### Step 4: Set Up GitHub Secrets 
 To securely store your DockerHub credentials for GitHub Actions, follow these steps:
 1. Go to your repository's **Settings**.
