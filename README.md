@@ -22,6 +22,7 @@ This repository sets up a **Continuous Integration (CI)** pipeline for a `.NET 8
   git push origin main
   
 ### Step 3 : Create a Dockerfile
+1. As docker file example.
 ```
 # Base image for running the app in Debug mode
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
@@ -59,7 +60,6 @@ To securely store your DockerHub credentials for GitHub Actions, follow these st
    - **DOCKERHUB_USERNAME** – Your DockerHub username.
    - **DOCKERHUB_PASSWORD** – Your DockerHub password.
    ```
-# Save it as Docker Name.
 These secrets will be securely referenced in your GitHub Actions workflow.
 
 ## 🔄 Step 5: Create a GitHub Actions Workflow
